@@ -1,23 +1,27 @@
 import React from 'react';
 import { useFormik } from 'formik';
-import { TextField } from '@mui/material';
+import { TextField, FormGroup, FormControlLabel, Checkbox } from '@mui/material';
 import Button from '@material-ui/core/Button';
+import './Login.scss';
 
-export default function SignUp() {
+export default function Login() {
 	const formik = useFormik({
 		initialValues: {
 			login: '',
-			password: 'foobar',
+			password: '',
 		},
 		onSubmit: (values) => {
 			alert(JSON.stringify(values, null, 2));
 		},
 	});
 	return (
-		<div>
+		<>
 			<form onSubmit={formik.handleSubmit}>
 				<TextField
 					fullWidth
+					sx={{
+						marginBottom: '1.25rem',
+					}}
 					id="login"
 					name="login"
 					label="Login"
@@ -28,6 +32,9 @@ export default function SignUp() {
 				/>
 				<TextField
 					fullWidth
+					sx={{
+						marginBottom: '1.25rem',
+					}}
 					id="password"
 					name="password"
 					label="Password"
@@ -37,10 +44,15 @@ export default function SignUp() {
 					error={formik.touched.password && Boolean(formik.errors.password)}
 					helperText={formik.touched.password && formik.errors.password}
 				/>
-				<Button color="primary" variant="contained" fullWidth type="submit">
+				<Button
+					color="primary"
+					variant="contained"
+					disabled={!(formik.values.login && formik.values.password)}
+					fullWidth
+					type="submit">
 					Submit
 				</Button>
 			</form>
-		</div>
+		</>
 	);
 }
