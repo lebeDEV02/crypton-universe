@@ -55,8 +55,8 @@ Genre.belongsTo(Comic);
 Publisher.hasOne(PublisherCountry);
 PublisherCountry.belongsTo(Publisher);
 
-ComicCard.hasOne(Comic);
-Comic.belongsTo(ComicCard);
+Comic.hasMany(ComicCard);
+ComicCard.belongsTo(Comic);
 
 ComicCard.hasOne(TypeOfComicCard);
 TypeOfComicCard.belongsTo(ComicCard);
