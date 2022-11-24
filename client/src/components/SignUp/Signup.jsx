@@ -2,16 +2,24 @@ import React from 'react';
 import { useFormik } from 'formik';
 import { TextField, FormControlLabel, Checkbox } from '@mui/material';
 import Button from '@material-ui/core/Button';
-
+import { Link } from 'react-router-dom';
+import { register } from '../../http/userApi';
 export default function Signup() {
 	const formik = useFormik({
 		initialValues: {
-			login: '',
+			username: '',
 			password: '',
 			isAdmin: false,
 		},
-		onSubmit: (values) => {
-			alert(JSON.stringify(values, null, 2));
+		onSubmit: ({ username, password, isAdmin }) => {
+			console.log('ID ASMIN IS', isAdmin);
+			let role = 'user';
+			if (isAdmin) {
+				role = 'admin';
+			}
+			register(username, password, role).then((res) => {
+				console.log(res);
+			});
 		},
 	});
 	return (
@@ -19,16 +27,16 @@ export default function Signup() {
 			<form onSubmit={formik.handleSubmit}>
 				<TextField
 					fullWidth
-					id="login"
-					name="login"
+					id="username"
+					name="username"
 					sx={{
 						marginBottom: '1.25rem',
 					}}
-					label="Login"
-					value={formik.values.login}
+					label="Username"
+					value={formik.values.username}
 					onChange={formik.handleChange}
-					error={formik.touched.login && Boolean(formik.errors.login)}
-					helperText={formik.touched.login && formik.errors.login}
+					error={formik.touched.username && Boolean(formik.errors.username)}
+					helperText={formik.touched.username && formik.errors.username}
 				/>
 				<TextField
 					fullWidth
@@ -54,13 +62,16 @@ export default function Signup() {
 				/>
 				<Button
 					color="primary"
-					disabled={!(formik.values.login && formik.values.password)}
+					disabled={!(formik.values.username && formik.values.password)}
 					variant="contained"
 					fullWidth
 					type="submit">
 					Submit
 				</Button>
 			</form>
+			<h5>
+				Already have an account? <Link to="/login">Login now!</Link>
+			</h5>
 		</>
 	);
 }

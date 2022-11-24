@@ -1,7 +1,5 @@
-import logo from './logo.svg';
 import Header from './components/shared/components/Header/Header';
-import { useState } from 'react';
-import { Route, Router, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import Login from './components/Login/Login';
 import SignUp from './components/SignUp/Signup';
 import './styles/App.scss';
