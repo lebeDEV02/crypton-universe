@@ -6,7 +6,7 @@ import Button from '@material-ui/core/Button';
 import { login } from '../../http/userApi';
 import './Login.scss';
 
-export default function Login() {
+export default function Login({ isAuth }) {
 	const formik = useFormik({
 		initialValues: {
 			username: '',

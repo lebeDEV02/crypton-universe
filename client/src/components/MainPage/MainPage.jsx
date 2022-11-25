@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from 'react';
+import { getAll } from '../../http/comicCardApi';
 import './MainPage.scss';
 export default function MainPage() {
 	const [cards, setCards] = useState([]);
 
 	useEffect(() => {
-		fetch('http://localhost:8080/api/test')
-			.then((res) => res.json())
-			.then((response) => {
-				setCards(response);
-			});
+		getAll().then((response) => {
+			setCards(response);
+		});
 	}, []);
 
 	return (
@@ -22,6 +21,7 @@ export default function MainPage() {
 							<p>Amount: {card.amount}</p>
 							<p>Circulation: {card.circulation}</p>
 							<p>Season: {card.season}</p>
+							<img src={process.env.REACT_APP_API_URL + card.img} alt="" />
 						</li>
 					);
 				})}

@@ -12,7 +12,6 @@ export default function Signup() {
 			isAdmin: false,
 		},
 		onSubmit: ({ username, password, isAdmin }) => {
-			console.log('ID ASMIN IS', isAdmin);
 			let role = 'user';
 			if (isAdmin) {
 				role = 'admin';
