@@ -1,0 +1,23 @@
+.comic {
+	list-style: none;
+	border: 1px solid;
+	border-radius: 2rem;
+	width: 600px;
+	height: 200px;
+	overflow: hidden;
+	display: flex;
+	&__link {
+		text-decoration: none;
+		color: #000;
+		display: flex;
+		justify-content: space-between;
+	}
+	&__info {
+		max-width: 300px;
+		padding: 1rem;
+	}
+	&__img {
+		width: 200px;
+		object-fit: contain;
+	}
+}

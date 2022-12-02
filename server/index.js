@@ -12,8 +12,8 @@ const errorHandler = require('./middleware/ErrorHandlingMiddleware');
 
 app.use(cors());
 app.use(express.json());
-app.use(fileUpload({}));
 app.use(express.static(path.resolve(__dirname, 'static')));
+app.use(fileUpload({}));
 app.use('/api', router);
 app.use(errorHandler);
 const start = async () => {
